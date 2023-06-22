@@ -18,9 +18,10 @@ namespace CS575_Final.Model
                 .AddJsonFile("appsettings.json")
                 .Build();
             var optionsBuilder = new DbContextOptionsBuilder<MovieContext>();
-            optionsBuilder = new DbContextOptionsBuilder<MovieContext>();
+            optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
 
             return new MovieContext(optionsBuilder.Options);
         }
     }
+
 }

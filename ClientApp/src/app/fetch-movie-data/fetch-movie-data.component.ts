@@ -13,14 +13,14 @@ export class FetchMovieDataComponent {
   'release year (increasing)', 'release year (decreasing)'];
   private currentSortingIndex: number = 0;
   currentSorting = this.sortingOptions[this.currentSortingIndex];
+  titleSearch: string = "";
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     http.get<Movie[]>(baseUrl + 'movies').subscribe(result => {
       this.movies = result;
     }, error => console.error(error));
   }
-  titleSearch: string = "";
-
+  
   // Start search by title
   get filteredMoviesByTitle(): Movie[] {
     if (!this.movies) {

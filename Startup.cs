@@ -17,6 +17,7 @@ namespace CS575_Final
             services.AddControllers();
             services.AddDbContext<MovieContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            Console.WriteLine("Connection string: " + Configuration.GetConnectionString("DefaultConnection"));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
