@@ -1,0 +1,44 @@
+<h1 id="tableLabel">Movie Data</h1>
+
+<p>This component fetches movie data from the server.</p>
+
+<p *ngIf="!movies?.length"><em>Loading...</em></p>
+
+<table class="table table-striped" aria-labelledby="tableLabel" *ngIf="movies.length">
+    <button> (click)="cycleSorting()" [title]="currentSorting">
+        {{ currentSorting }} Movies
+      </button>
+      <form
+    class="titleSearch"
+    action="/action_page.php"
+    style="margin: auto; max-width: 300px"
+  >
+    <input
+      type="text"
+      placeholder="Title Search.."
+      name="titleSearch"
+      [(ngModel)]="titleSearch"
+    />
+    <button type="submit"><i class="fa fa-search"></i></button>
+  </form>
+    <thead>
+        <tr>
+            <th>Movie Title</th>
+            <th>Release Date</th>
+            <th>Genre</th>
+            <th>Tagline</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let movie of movies">
+            <td><a
+                href="{{ movie.homepage }}"
+                routerLink="/movie-page"
+                title="{{ movie.overview }}"
+                >{{ movie.originalTitle }}</a
+              ></td>
+            <td>{{ movie.releaseDate }}</td>
+            <td>{{ movie.genres }}</td>
+            <td>{{ movie.tagline }}</td>
+        </tr>
+</table>
