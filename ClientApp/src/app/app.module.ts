@@ -10,6 +10,7 @@ import { FetchMovieDataComponent } from './fetch-movie-data/fetch-movie-data.com
 import { UserLoginComponent } from './user-login/user-login.component';
 import { RegisterComponent } from './register/register.component';
 import { FetchWeatherDataComponent } from './fetch-weather-data/fetch-weather-data.component';
+import { UserListDataComponent } from './user-list-data/user-list-data.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { FetchWeatherDataComponent } from './fetch-weather-data/fetch-weather-da
     UserLoginComponent,
     RegisterComponent,
     FetchWeatherDataComponent,
+    UserListDataComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -31,6 +33,7 @@ import { FetchWeatherDataComponent } from './fetch-weather-data/fetch-weather-da
       { path: 'login', component: UserLoginComponent},
       { path: 'register', component: RegisterComponent},
       { path: 'fetch-weather-data', component: FetchWeatherDataComponent},
+      { path: 'user-list-data', component: UserListDataComponent},
     ])
   ],
   providers: [],

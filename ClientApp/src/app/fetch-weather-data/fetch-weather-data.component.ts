@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-fetch-data',
+  selector: 'app-fetch-weather-data',
   templateUrl: './fetch-weather-data.component.html'
 })
 export class FetchWeatherDataComponent {
