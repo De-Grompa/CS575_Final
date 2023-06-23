@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using CS575_Final.Models;
+using CS575_Final.Model;
 
 namespace CS575_Final.Controllers
 {
@@ -23,10 +23,10 @@ namespace CS575_Final.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            return Enumerable.Range(1, 10).Select(index => new WeatherForecast
             {
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
+                TemperatureC = Random.Shared.Next(-20, 60),
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();

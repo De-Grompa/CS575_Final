@@ -3,9 +3,9 @@ import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-fetch-data',
-  templateUrl: './fetch-data.component.html'
+  templateUrl: './fetch-weather-data.component.html'
 })
-export class FetchDataComponent {
+export class FetchWeatherDataComponent {
   public forecasts: WeatherForecast[] = [];
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {

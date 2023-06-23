@@ -1,4 +1,4 @@
-namespace CS575_Final.Models{
+namespace CS575_Final.Model{
     public class WeatherForecast
     {
         public DateOnly Date { get; set; }

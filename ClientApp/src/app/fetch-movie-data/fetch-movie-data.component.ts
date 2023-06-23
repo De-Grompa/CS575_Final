@@ -1,5 +1,8 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from "rxjs/operators";
+
 
 @Component({
   selector: 'app-fetch-movie-data',
@@ -15,7 +18,7 @@ export class FetchMovieDataComponent {
   currentSorting = this.sortingOptions[this.currentSortingIndex];
   titleSearch: string = "";
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     http.get<Movie[]>(baseUrl + 'movies').subscribe(result => {
       this.movies = result;
     }, error => console.error(error));
@@ -76,6 +79,29 @@ export class FetchMovieDataComponent {
     }
     this.movies = sortedMovies;
   }
+
+  getMovies(): Observable<Movie[]> {
+    return this.http.get('assets/tmdb-movies.csv', { responseType: 'text' })
+      .pipe(
+        map(data => this.parseCsvData(data))
+      );
+  }
+
+  private parseCsvData(data: string): Movie[] {
+    const lines = data.split('\n');
+    const headers = lines[0].split('~');
+    const movies: Movie[] = [];
+
+    for (let i = 1; i < lines.length; i++) {
+      const movieData = lines[i].split('~');
+      const movie: any = {};
+      for (let j = 0; j < headers.length; j++) {
+        movie[headers[j]] = movieData[j];
+      }
+      movies.push(movie);
+    }
+    return movies;
+  }
 }
 
 
@@ -87,15 +113,15 @@ interface Movie {
   budget: number;
   revenue: number;
   originalTitle: string;
-  cast: string[];
+  cast: string;
   homepage: string;
   director: string;
   tagline: string;
-  keywords: string[];
+  keywords: string;
   overview: string;
   runtime: number;
-  genres: string[];
-  productionCompanies: string[];
+  genres: string;
+  productionCompanies: string;
   releaseDate: string;
   voteCount: number;
   voteAverage: number;
