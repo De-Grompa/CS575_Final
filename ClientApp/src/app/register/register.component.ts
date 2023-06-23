@@ -18,7 +18,7 @@ export class RegisterComponent {
   onSubmit() {
     const registerData = { name: this.name, email: this.email, password: this.password };
     this.http.post('/api/register', registerData).subscribe(response => {
-      this.router.navigate(['/home']);
+      this.router.navigate(['/']);
     }, error => {
       console.log(error);
     });
